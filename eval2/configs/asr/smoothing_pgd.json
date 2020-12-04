@@ -83,10 +83,10 @@
         "wrapper_kwargs": {            
             "use_half":false,
             "use_amp":false,
-            "load_weights_file":"deepspeech_librispeech_gaussian02.pth",
+            "load_weights_file":"PERS_deepspeech_librispeech_gaussian02.pth",
             "random_init":false,
             "niters_forward":50,
-            "niters_backward":50,
+            "niters_backward":10,
             "batch_backward":16,
             "batch_forward":16,
             "decoder_type":"beam",
