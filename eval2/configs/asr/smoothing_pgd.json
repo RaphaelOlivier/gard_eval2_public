@@ -107,7 +107,7 @@
     },
     "sysconfig": {
         "docker_image": "perspecta/pytorch16-speech:0.12.2",
-        "external_github_repo": ["hkakitani/deepspeech.pytorch","santi-pdp/segan_pytorch"],
+        "external_github_repo": ["hkakitani/deepspeech.pytorch","santi-pdp/segan_pytorch","RaphaelOlivier/gard_eval2_public@main"],
         "gpus": "all",
         "local_repo_path": null,
         "output_dir": null,

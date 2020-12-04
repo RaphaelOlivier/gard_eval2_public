@@ -246,6 +246,7 @@ class SmoothedDeepSpeech(PyTorchDeepSpeech):
                 for i in range(0,self.niters_backward,self.batch_backward):
                     batch_size = min(self.batch_forward,self.niters_forward-i)
                     x_batch = np.repeat(x,batch_size,axis=0)
+                    y_batch = np.repeat(y,batch_size,axis=0)
                     grad=super(SmoothedDeepSpeech,self).loss_gradient(x_batch,y_batch,**kwargs)
                     random_gradients=random_gradients + [np.expand_dims(g,0) for g in grad]
             else:
