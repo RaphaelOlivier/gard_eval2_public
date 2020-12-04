@@ -6,19 +6,30 @@
     "attack": {
         "knowledge": "white",
         "kwargs": {
-            "batch_size": 1,
-            "norm":2,
-            "eps": 0.5,
-            "eps_step": 0.05,
-            "targeted": true,
-            "max_iter":20
+            "decrease_factor_alpha": 0.5,
+            "global_max_length": 562480,
+            "increase_factor_alpha": 2.0,
+            "initial_eps": 0.0075,
+            "initial_rescale": 1.0,
+            "learning_rate_1st_stage": 0.0001,
+            "learning_rate_2nd_stage": 1e-07,
+            "max_iter_1st_stage": 400,
+            "max_iter_2nd_stage": 100,
+            "num_iter_decrease_alpha": 50,
+            "rescale_factor": 0.5,
+            "niters_gradients":10,
+            "batch_backward":true
         },
-        "module": "art.attacks.evasion",
-        "name": "ProjectedGradientDescent",
+        "module": "eval2.attacks.imperceptible_asr",
+        "name": "ImperceptibleASRWithPreprocessing",
         "targeted": true,
         "targeted_labels": {
-            "scheme": "string",
-            "value": "TEST STRING"
+            "scheme": "matched length",
+            "transcripts": [
+                "REALLY SHORT TEST STRING",
+                "THE TEST STRING HAS A LENGTH EQUAL TO THE MEDIAN OF THE CLEAN TEST TRANSCRIPT LENGTHS",
+                "THIS IS AN EXCEEDINGLY LONG TEST STRING BUT NOT REALLY AS THE LONGEST STRING HAS OVER FIVE HUNDRED CHARACTERS IN ITS TRANSCRIPT AND INCLUDES A LIST OF PEOPLE AND SPEASKS OF A SENATOR FROM NEW JERSEY"
+            ]
         },
         "use_label": false
     },
@@ -77,11 +88,13 @@
         "predict_kwargs": {
             "transcription_output": true,
             "reload_model":false
-
         },
-        "weights_file": null,
-        "wrapper_kwargs": { 
-            "load_weights_file":"librispeech_pretrained_v2.pth",
+        "weights_file": "PERS_deepspeech_librispeech_gaussian02.pth",
+        "wrapper_kwargs": {            
+            "use_half":false,
+            "use_amp":false,
+            "load_weights_file":"PERS_deepspeech_librispeech_gaussian02.pth",
+            "random_init":false,
             "niters_forward":50,
             "niters_backward":10,
             "batch_backward":16,
@@ -103,8 +116,8 @@
         "name": "AutomaticSpeechRecognition"
     },
     "sysconfig": {
-        "docker_image": "perspecta/pytorch14-speech:0.12.2",
-        "external_github_repo": ["hkakitani/deepspeech.pytorch","santi-pdp/segan_pytorch","RaphaelOlivier/gard_eval2_public@main"],
+        "docker_image": "perspecta/pytorch16-speech:0.12.2",
+        "external_github_repo": ["hkakitani/deepspeech.pytorch","RaphaelOlivier/gard_eval2_public@main"],
         "gpus": "all",
         "local_repo_path": null,
         "output_dir": null,

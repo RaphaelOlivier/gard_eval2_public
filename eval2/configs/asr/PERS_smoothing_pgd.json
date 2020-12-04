@@ -79,7 +79,7 @@
             "reload_model":false
 
         },
-        "weights_file": null,
+        "weights_file": "PERS_deepspeech_librispeech_gaussian02.pth",
         "wrapper_kwargs": {            
             "use_half":false,
             "use_amp":false,
