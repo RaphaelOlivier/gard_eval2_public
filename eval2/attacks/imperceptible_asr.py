@@ -34,7 +34,7 @@ class PreprocessingInPytorch(Function):
         for i in range(len(npmask)):
             x_np_preprocessed[i,:len(x_np_var_len[i])]=x_np_var_len[i]
 
-        x_preprocessed = torch.tensor(x_np).to(x.device)
+        x_preprocessed = torch.tensor(x_np_preprocessed).to(x.device)
         x_preprocessed.requires_grad = x.requires_grad
         return x_preprocessed
     
